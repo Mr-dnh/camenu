@@ -42,58 +42,44 @@ export function CategoryMenu() {
     <>
       <header className="site-header">
         <div className="status-bar" aria-hidden="true">
-          <span className="status-dots">● ● ● ● ●</span><span>WIFI</span><span>4:20 PM</span><span>100% ▰</span>
+          <span>9:41</span>
+          <span className="status-right"><span>▮▮▮</span><span>◔</span><span className="battery"> </span></span>
         </div>
         <div className="header-main">
           <button className="icon-button menu-mark" aria-label="Back to categories" onClick={() => setActiveCategory(null)}>
             <span /><span /><span />
           </button>
-          <a className="wordmark" href="#" onClick={(event) => { event.preventDefault(); setActiveCategory(null); }}>
-            <span className="wordmark-small">THE NEIGHBOURHOOD</span>
-            <span>F I S H</span>
-          </a>
-          <button className="icon-button search-button" aria-label="Search menu" onClick={() => setSearchOpen(true)}><Search size={27} /></button>
+          <a className="wordmark" href="#" onClick={(event) => { event.preventDefault(); setActiveCategory(null); }}>F I S H</a>
+          <button className="icon-button search-button" aria-label="Search menu" onClick={() => setSearchOpen(true)}><Search size={26} /></button>
         </div>
       </header>
 
       <main className="menu-home">
-        <section className="intro">
-          <p className="eyebrow">GOOD FOOD. GOOD COMPANY.</p>
-          <h1>A little bit<br /><em>of everything.</em></h1>
-          <p className="intro-note">Made fresh, served slowly.</p>
-          <span className="intro-index">MENU — 01 / 06</span>
-        </section>
-
         <section className="category-list" aria-label="Menu categories">
           {menuCategories.map((category, index) => (
             <button
-              className={`category-row category-row--${category.id}`}
+              className={`category-row category-row--${category.id} ${index % 2 ? "category-row--left" : "category-row--right"}`}
               key={category.id}
               style={{ "--category-color": category.color } as React.CSSProperties}
               onClick={() => setActiveCategory(category)}
               aria-label={`Open ${category.name} menu`}
             >
-              <span className="category-number">0{index + 1}</span>
-              <span className="category-title">{category.name}</span>
-              <span className="category-subtitle">{category.subtitle}</span>
+              <span className="category-copy">
+                <span className="category-number">0{index + 1}<i /></span>
+                <span className="category-title">{category.name}</span>
+                <span className="category-subtitle">{category.subtitle}</span>
+              </span>
               <ImagePlaceholder
                 src={category.image}
-                alt={`${category.name} photography placeholder`}
+                alt={`${category.name} photo placeholder`}
                 className="category-image"
                 imageClassName="category-photo"
                 priority={index < 2}
               />
-              <span className="category-arrow"><ArrowUpRight size={23} strokeWidth={1.5} /></span>
-              <span className="category-bottom-line" />
+              <span className="category-arrow"><ArrowUpRight size={20} strokeWidth={1.5} /></span>
             </button>
           ))}
         </section>
-
-        <footer className="site-footer">
-          <span>MADE WITH CARE, IN RASHT.</span>
-          <span>COME HUNGRY. LEAVE HAPPY.</span>
-          <span>© FISH HOUSE 2026</span>
-        </footer>
       </main>
 
       {activeCategory && (
@@ -112,7 +98,7 @@ export function CategoryMenu() {
             <div className="dish-list">
               {activeCategory.dishes.map((dish, index) => (
                 <article className="dish-card" key={dish.id} style={{ animationDelay: `${index * 90}ms` }}>
-                  <ImagePlaceholder src={dish.image} alt={`${dish.name} photography placeholder`} className="dish-image" imageClassName="dish-photo" />
+                  <ImagePlaceholder src={dish.image} alt={`${dish.name} photo placeholder`} className="dish-image" imageClassName="dish-photo" />
                   <div className="dish-copy">
                     <div className="dish-meta">
                       {dish.tag && <span className="dish-tag">{dish.tag}</span>}
