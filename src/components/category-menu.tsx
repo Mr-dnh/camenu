@@ -49,7 +49,7 @@ export function CategoryMenu() {
       </header>
 
       <main className="mx-auto h-[calc(100dvh-55px)] overflow-hidden">
-        <section className="grid h-full grid-auto-rows-fr" aria-label="دسته‌بندی‌های منو">
+        <section className="grid h-full auto-rows-fr" aria-label="دسته‌بندی‌های منو">
           {menuCategories.map((category, index) => {
             const imageOnRight = index % 2 === 0;
             return (
