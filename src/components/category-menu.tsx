@@ -98,15 +98,15 @@ export function CategoryMenu() {
               <h2 className="mt-3 text-5xl font-bold sm:text-7xl">{activeCategory.name}<span className="text-[#eea052]">.</span></h2>
               <p className="mt-2 text-sm text-[#66655e]">{activeCategory.subtitle}</p>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
               {activeCategory.dishes.map((dish, index) => (
-                <article key={dish.id} className="grid grid-cols-[minmax(100px,.8fr)_minmax(0,1.2fr)] items-start gap-3 sm:block" style={{ animation: "fadeIn .4s ease-out both", animationDelay: `${index * 80}ms` }}>
-                  <ImagePlaceholder src={dish.image} alt={`تصویر ${dish.name}`} className="aspect-[.9] w-full sm:mb-3 sm:aspect-[1.5]" imageClassName="h-full w-full object-cover" />
-                  <div>
-                    <div className="flex items-center justify-between text-[9px] text-[#66655e]"><span>{dish.tag ? ({ "HOUSE FAVORITE": "پیشنهاد سرآشپز", VEGETARIAN: "گیاهی", CLASSIC: "کلاسیک", "BARISTA PICK": "پیشنهاد باریستا" } as Record<string, string>)[dish.tag] : ""}</span><span>{String(index + 1).padStart(2, "0").replace(/[0-9]/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[Number(d)])}</span></div>
-                    <h3 className="mt-2 text-lg font-bold sm:text-2xl">{dish.name}</h3>
-                    <p className="mt-1 text-xs leading-6 text-[#66655e]">{dish.description}</p>
-                    <div className="mt-3 border-t border-black/15 pt-2 text-sm font-bold">{currency(dish.price)}</div>
+                <article key={dish.id} className="min-w-0 overflow-hidden rounded-xl border border-black/10 bg-white/70 shadow-sm" style={{ animation: "fadeIn .4s ease-out both", animationDelay: `${index * 60}ms` }}>
+                  <ImagePlaceholder src={dish.image} alt={`تصویر ${dish.name}`} className="aspect-[1.05] w-full bg-[#e8dfd2] sm:aspect-[1.2]" imageClassName="h-full w-full object-cover" />
+                  <div className="p-3 sm:p-4">
+                    <div className="flex min-h-4 items-center justify-between gap-1 text-[8px] text-[#66655e] sm:text-[9px]"><span className="truncate">{dish.tag ? ({ "HOUSE FAVORITE": "پیشنهاد سرآشپز", VEGETARIAN: "گیاهی", CLASSIC: "کلاسیک", "BARISTA PICK": "پیشنهاد باریستا" } as Record<string, string>)[dish.tag] : ""}</span><span className="shrink-0">{String(index + 1).padStart(2, "0").replace(/[0-9]/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[Number(d)])}</span></div>
+                    <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-6 sm:text-lg">{dish.name}</h3>
+                    <p className="mt-1 line-clamp-3 min-h-[3.75rem] text-[10px] leading-5 text-[#66655e] sm:text-xs">{dish.description}</p>
+                    <div className="mt-3 border-t border-black/10 pt-2 text-xs font-bold sm:text-sm">{currency(dish.price)}</div>
                   </div>
                 </article>
               ))}
