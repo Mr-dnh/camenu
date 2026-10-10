@@ -27,6 +27,9 @@ export function ImagePlaceholder({
         alt={alt}
         className={imageClassName}
         loading={priority ? "eager" : "lazy"}
+        onError={(event) => {
+          event.currentTarget.style.display = "none";
+        }}
       />
     </div>
   );
