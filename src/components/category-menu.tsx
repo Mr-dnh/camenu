@@ -1,11 +1,11 @@
 "use client";
 
-import { ArrowDownLeft, ArrowLeft, ArrowUpRight, Plus, Search, X } from "lucide-react";
+import { ArrowLeft, ArrowUpLeft, Plus, Search, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { menuCategories, type MenuCategory } from "@/data/menu";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 
-const currency = (price: number) => `$${price.toFixed(2)}`;
+const currency = (price: number) => `${price.toLocaleString("fa-IR")} تومان`;
 
 export function CategoryMenu() {
   const [activeCategory, setActiveCategory] = useState<MenuCategory | null>(null);
@@ -18,7 +18,6 @@ export function CategoryMenu() {
     ),
     [],
   );
-
   const filteredDishes = allDishes.filter((dish) =>
     `${dish.name} ${dish.description} ${dish.categoryName}`.toLowerCase().includes(search.toLowerCase()),
   );
@@ -40,101 +39,100 @@ export function CategoryMenu() {
 
   return (
     <>
-      <header className="site-header">
-        <div className="status-bar" aria-hidden="true">
-          <span>9:41</span>
-          <span className="status-right"><span>▮▮▮</span><span>◔</span><span className="battery"> </span></span>
+      <header className="relative z-10 h-[88px] bg-[#202a30] text-[#f8f4ed] sm:h-[112px]">
+        <div className="flex h-[28px] items-center justify-between px-[6%] text-xs sm:h-[38px] sm:text-sm" aria-hidden="true">
+          <span>۹:۴۱</span><span className="flex items-center gap-2 text-xs"><span>▮▮▮</span><span>◔</span><span className="h-[10px] w-[21px] border border-current" /></span>
         </div>
-        <div className="header-main">
-          <button className="icon-button menu-mark" aria-label="Back to categories" onClick={() => setActiveCategory(null)}>
-            <span /><span /><span />
+        <div className="grid h-[60px] grid-cols-3 items-center border-b border-white/10 px-[5%] sm:h-[74px]">
+          <button className="flex h-10 w-10 flex-col items-start justify-center gap-[5px]" aria-label="بازگشت به دسته‌بندی‌ها" onClick={() => { setActiveCategory(null); setSearchOpen(false); }}>
+            <span className="h-[2px] w-6 bg-current" /><span className="h-[2px] w-[18px] bg-current" /><span className="h-[2px] w-6 bg-current" />
           </button>
-          <a className="wordmark" href="#" onClick={(event) => { event.preventDefault(); setActiveCategory(null); }}>F I S H</a>
-          <button className="icon-button search-button" aria-label="Search menu" onClick={() => setSearchOpen(true)}><Search size={26} /></button>
+          <button className="justify-self-center font-serif text-xl font-bold tracking-[.24em]" onClick={() => { setActiveCategory(null); setSearchOpen(false); }}>فیش</button>
+          <button className="justify-self-end p-2" aria-label="جست‌وجو در منو" onClick={() => setSearchOpen(true)}><Search size={25} /></button>
         </div>
       </header>
 
-      <main className="menu-home">
-        <section className="category-list" aria-label="Menu categories">
-          {menuCategories.map((category, index) => (
-            <button
-              className={`category-row category-row--${category.id} ${index % 2 ? "category-row--left" : "category-row--right"}`}
-              key={category.id}
-              style={{ "--category-color": category.color } as React.CSSProperties}
-              onClick={() => setActiveCategory(category)}
-              aria-label={`Open ${category.name} menu`}
-            >
-              <span className="category-copy">
-                <span className="category-number">0{index + 1}<i /></span>
-                <span className="category-title">{category.name}</span>
-                <span className="category-subtitle">{category.subtitle}</span>
-              </span>
-              <ImagePlaceholder
-                src={category.image}
-                alt={`${category.name} photo placeholder`}
-                className="category-image"
-                imageClassName="category-photo"
-                priority={index < 2}
-              />
-              <span className="category-arrow"><ArrowUpRight size={20} strokeWidth={1.5} /></span>
-            </button>
-          ))}
+      <main className="mx-auto h-[calc(100dvh-88px)] max-w-[900px] overflow-hidden sm:h-[calc(100dvh-112px)]">
+        <section className="grid h-full grid-rows-6" aria-label="دسته‌بندی‌های منو">
+          {menuCategories.map((category, index) => {
+            const imageOnRight = index % 2 === 0;
+            return (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category)}
+                aria-label={`نمایش منوی ${category.name}`}
+                className="relative isolate min-h-0 overflow-hidden border-b border-white/40 text-right"
+                style={{ backgroundColor: category.color, color: category.id === "cocktails" ? "#fbf6ed" : "#202a30" }}
+              >
+                <span className={`absolute inset-y-0 z-[2] flex w-[58%] flex-col justify-center ${imageOnRight ? "left-[7%] items-start text-right" : "right-[7%] items-start text-right"}`}>
+                  <span className="mb-1 flex items-center gap-3 text-[10px] tracking-[.18em] opacity-75 sm:mb-2 sm:text-xs">
+                    <span>{String(index + 1).padStart(2, "0").replace(/[0-9]/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[Number(d)])}</span><span className="h-px w-8 bg-current opacity-50" />
+                  </span>
+                  <span className="max-w-full text-xl font-bold leading-tight tracking-wide sm:text-3xl">{category.name}</span>
+                  <span className="mt-2 max-w-full text-[8px] leading-5 opacity-80 sm:mt-3 sm:text-[10px]">{category.subtitle}</span>
+                </span>
+                <ImagePlaceholder
+                  src={category.image}
+                  alt={`جای تصویر دسته ${category.name}`}
+                  className={`absolute top-1/2 z-[1] aspect-square h-[112%] -translate-y-1/2 rounded-full border-2 border-white/80 bg-[#e9e3d9] p-[5px] shadow-lg outline outline-1 outline-black/20 ${imageOnRight ? "-right-[7%]" : "-left-[7%]"}`}
+                  imageClassName="h-full w-full rounded-full object-cover opacity-25 mix-blend-multiply"
+                  priority={index < 2}
+                />
+                <span className={`absolute bottom-2 z-[3] opacity-50 ${imageOnRight ? "left-[7%]" : "right-[7%]"}`}><ArrowUpLeft size={16} /></span>
+              </button>
+            );
+          })}
         </section>
       </main>
 
       {activeCategory && (
-        <section className="menu-overlay" role="dialog" aria-modal="true" aria-label={`${activeCategory.name} menu`}>
-          <div className="overlay-top">
-            <button className="back-button" onClick={() => setActiveCategory(null)}><ArrowLeft size={18} /> ALL CATEGORIES</button>
-            <span className="overlay-brand">F I S H</span>
-            <button className="icon-button overlay-close" aria-label="Close menu" onClick={() => setActiveCategory(null)}><X size={24} /></button>
+        <section className="fixed inset-0 z-20 overflow-y-auto bg-[#f4eee6] text-[#273039] animate-[fadeIn_.3s_ease-out]" role="dialog" aria-modal="true" aria-label={`منوی ${activeCategory.name}`} dir="rtl">
+          <div className="sticky top-0 z-10 grid h-16 grid-cols-3 items-center border-b border-black/10 bg-[#f4eee6]/95 px-[5%] backdrop-blur">
+            <button className="flex items-center gap-1 justify-self-start text-xs font-bold" onClick={() => setActiveCategory(null)}><ArrowLeft size={17} /> همهٔ دسته‌ها</button>
+            <span className="justify-self-center font-serif font-bold tracking-widest">فیش</span>
+            <button className="justify-self-end p-2" aria-label="بستن منو" onClick={() => setActiveCategory(null)}><X size={22} /></button>
           </div>
-          <div className="overlay-content" key={activeCategory.id}>
-            <div className="overlay-heading">
-              <span className="eyebrow">THE MENU / 0{menuCategories.findIndex((c) => c.id === activeCategory.id) + 1}</span>
-              <h2>{activeCategory.name}<span>.</span></h2>
-              <p>{activeCategory.subtitle}</p>
+          <div key={activeCategory.id} className="mx-auto max-w-5xl px-5 py-8 sm:px-10">
+            <div className="pb-7">
+              <span className="text-[10px] font-bold tracking-widest text-[#66655e]">منوی اختصاصی · {activeCategory.name}</span>
+              <h2 className="mt-3 text-5xl font-bold sm:text-7xl">{activeCategory.name}<span className="text-[#eea052]">.</span></h2>
+              <p className="mt-2 text-sm text-[#66655e]">{activeCategory.subtitle}</p>
             </div>
-            <div className="dish-list">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
               {activeCategory.dishes.map((dish, index) => (
-                <article className="dish-card" key={dish.id} style={{ animationDelay: `${index * 90}ms` }}>
-                  <ImagePlaceholder src={dish.image} alt={`${dish.name} photo placeholder`} className="dish-image" imageClassName="dish-photo" />
-                  <div className="dish-copy">
-                    <div className="dish-meta">
-                      {dish.tag && <span className="dish-tag">{dish.tag}</span>}
-                      <span className="dish-number">0{index + 1}</span>
-                    </div>
-                    <h3>{dish.name}</h3>
-                    <p>{dish.description}</p>
-                    <div className="dish-bottom"><span className="dish-price">{currency(dish.price)}</span><span className="dish-price-note">INCL. TAX</span></div>
+                <article key={dish.id} className="grid grid-cols-[minmax(100px,.8fr)_minmax(0,1.2fr)] items-start gap-3 sm:block" style={{ animation: "fadeIn .4s ease-out both", animationDelay: `${index * 80}ms` }}>
+                  <ImagePlaceholder src={dish.image} alt={`تصویر ${dish.name}`} className="aspect-[.9] w-full sm:mb-3 sm:aspect-[1.5]" imageClassName="h-full w-full object-cover" />
+                  <div>
+                    <div className="flex items-center justify-between text-[9px] text-[#66655e]"><span>{dish.tag ? ({ "HOUSE FAVORITE": "پیشنهاد سرآشپز", VEGETARIAN: "گیاهی", CLASSIC: "کلاسیک", "BARISTA PICK": "پیشنهاد باریستا" } as Record<string, string>)[dish.tag] : ""}</span><span>{String(index + 1).padStart(2, "0").replace(/[0-9]/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[Number(d)])}</span></div>
+                    <h3 className="mt-2 text-lg font-bold sm:text-2xl">{dish.name}</h3>
+                    <p className="mt-1 text-xs leading-6 text-[#66655e]">{dish.description}</p>
+                    <div className="mt-3 border-t border-black/15 pt-2 text-sm font-bold">{currency(dish.price)}</div>
                   </div>
                 </article>
               ))}
             </div>
-            <div className="overlay-bottom"><span>FRESHLY MADE, ALWAYS.</span><span>ASK US ABOUT ALLERGENS.</span></div>
+            <div className="mt-8 flex flex-wrap justify-between gap-3 border-t border-black/15 py-4 text-[9px] text-[#66655e]"><span>تازه و روزانه، برای شما</span><span>دربارهٔ آلرژن‌ها از ما بپرسید</span></div>
           </div>
         </section>
       )}
 
       {searchOpen && (
-        <section className="search-overlay" role="dialog" aria-modal="true" aria-label="Search the menu">
-          <div className="overlay-top">
-            <button className="back-button" onClick={() => setSearchOpen(false)}><ArrowDownLeft size={18} /> BACK TO MENU</button>
-            <span className="overlay-brand">F I S H</span>
-            <button className="icon-button overlay-close" aria-label="Close search" onClick={() => setSearchOpen(false)}><X size={24} /></button>
+        <section className="fixed inset-0 z-20 overflow-y-auto bg-[#f4eee6] text-[#273039] animate-[fadeIn_.3s_ease-out]" role="dialog" aria-modal="true" aria-label="جست‌وجوی منو" dir="rtl">
+          <div className="sticky top-0 z-10 grid h-16 grid-cols-3 items-center border-b border-black/10 bg-[#f4eee6]/95 px-[5%] backdrop-blur">
+            <button className="flex items-center gap-1 justify-self-start text-xs font-bold" onClick={() => setSearchOpen(false)}><ArrowLeft size={17} /> بازگشت</button>
+            <span className="justify-self-center font-serif font-bold">فیش</span>
+            <button className="justify-self-end p-2" aria-label="بستن جست‌وجو" onClick={() => setSearchOpen(false)}><X size={22} /></button>
           </div>
-          <div className="search-content">
-            <span className="eyebrow">FIND YOUR FAVOURITE</span>
-            <label className="search-field"><Search size={23} /><input autoFocus value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Pasta, coffee, something sweet..." /><button aria-label="Clear search" onClick={() => setSearch("")}><X size={18} /></button></label>
-            <p className="search-count">{filteredDishes.length} ITEMS ON THE MENU</p>
-            <div className="search-results">
-              {filteredDishes.map((dish) => (
-                <button key={dish.id} className="search-result" onClick={() => { setSearchOpen(false); setSearch(""); setActiveCategory(menuCategories.find((category) => category.dishes.some((item) => item.id === dish.id)) ?? null); }}>
-                  <span><small>{dish.categoryName}</small><strong>{dish.name}</strong><em>{dish.description}</em></span><span className="search-result-price">{currency(dish.price)} <Plus size={16} /></span>
-                </button>
-              ))}
-              {filteredDishes.length === 0 && <p className="empty-search">Nothing on the menu by that name. Try another search.</p>}
-            </div>
+          <div className="mx-auto max-w-3xl px-5 py-10">
+            <span className="text-xs font-bold text-[#66655e]">غذای مورد علاقه‌ات را پیدا کن</span>
+            <label className="mt-5 flex items-center gap-3 border-b border-[#273039] py-3"><Search size={21} /><input autoFocus value={search} onChange={(event) => setSearch(event.target.value)} placeholder="نام غذا یا دسته‌بندی..." className="min-w-0 flex-1 bg-transparent text-base outline-none" /><button aria-label="پاک کردن جست‌وجو" onClick={() => setSearch("")}><X size={17} /></button></label>
+            <p className="my-5 text-[10px] text-[#66655e]">{filteredDishes.length.toLocaleString("fa-IR")} مورد در منو</p>
+            {filteredDishes.map((dish) => (
+              <button key={dish.id} className="flex w-full items-center justify-between gap-4 border-b border-black/10 py-4 text-right" onClick={() => { setSearchOpen(false); setSearch(""); setActiveCategory(menuCategories.find((category) => category.dishes.some((item) => item.id === dish.id)) ?? null); }}>
+                <span><span className="block text-xs text-[#66655e]">{dish.categoryName}</span><strong className="mt-1 block">{dish.name}</strong><span className="mt-1 block text-xs text-[#66655e]">{dish.description}</span></span><span className="flex shrink-0 items-center gap-2 text-xs font-bold">{currency(dish.price)}<Plus size={15} /></span>
+              </button>
+            ))}
+            {filteredDishes.length === 0 && <p className="py-6 text-sm text-[#66655e]">چیزی پیدا نشد؛ عبارت دیگری را امتحان کن.</p>}
           </div>
         </section>
       )}
