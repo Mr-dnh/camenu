@@ -64,7 +64,7 @@ export function CategoryMenu() {
                 className="relative isolate min-h-0 overflow-hidden border-b border-white/40 text-right"
                 style={{ backgroundColor: category.color, color: category.id === "cocktails" ? "#fbf6ed" : "#202a30" }}
               >
-                <span className={`absolute inset-y-0 z-[2] flex w-[58%] flex-col justify-center ${imageOnRight ? "right-[7%] items-start text-right" : "left-[7%] items-start text-right"}`}>
+                <span className={`absolute inset-y-0 z-[2] flex w-[58%] flex-col justify-center ${imageOnRight ? "left-[7%] items-start text-right" : "right-[7%] items-start text-right"}`}>
                   <span className="mb-1 flex items-center gap-3 text-[10px] tracking-[.18em] opacity-75 sm:mb-2 sm:text-xs">
                     <span>{String(index + 1).padStart(2, "0").replace(/[0-9]/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[Number(d)])}</span><span className="h-px w-8 bg-current opacity-50" />
                   </span>
