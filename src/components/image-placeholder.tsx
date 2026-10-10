@@ -17,10 +17,6 @@ export function ImagePlaceholder({
 }: ImagePlaceholderProps) {
   return (
     <div className={`image-placeholder ${className}`}>
-      <div className="image-placeholder__hint" aria-hidden="true">
-        <ImageIcon size={19} strokeWidth={1.4} />
-        <span>تصویر شما</span>
-      </div>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}

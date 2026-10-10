@@ -1,11 +1,34 @@
 @import "tailwindcss";
 
-html, body { height: 100%; margin: 0; overflow: hidden; }
-body { background: #f4eee6; -webkit-font-smoothing: antialiased; }
-button, input { font: inherit; }
-button:focus-visible, input:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-.image-placeholder { position: relative; overflow: hidden; }
-.image-placeholder__hint { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: rgba(39,48,57,.55); }
-.image-placeholder__hint span { font-size: 7px; letter-spacing: .12em; }
-.image-placeholder img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: #f4eee6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.image-placeholder {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-placeholder img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
