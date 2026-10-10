@@ -1,5 +1,3 @@
-import { Image as ImageIcon } from "lucide-react";
-
 type ImagePlaceholderProps = {
   src: string;
   alt: string;

@@ -16,6 +16,8 @@ export type MenuCategory = {
   dishes: Dish[];
 };
 
+export const cafeName: string = "کافه";
+
 // متن‌ها و قیمت‌ها نمونه‌اند؛ عکس‌ها را با فایل‌های خودت جایگزین کن.
 export const menuCategories: MenuCategory[] = [
   {
@@ -23,7 +25,7 @@ export const menuCategories: MenuCategory[] = [
     name: "صبحانه",
     subtitle: "کلاسیک / شیرین / سالم",
     color: "#f5ce96",
-    image: "/images/categories/breakfast.jpg",
+    image: "/images/images (1).jpeg",
     dishes: [
       { id: "sunrise-plate", name: "بشقاب طلوع", description: "تخم‌مرغ، نان خمیرترش برشته، لبنه و سبزیجات تازه.", price: 12, image: "/images/dishes/sunrise-plate.jpg", tag: "HOUSE FAVORITE" },
       { id: "ricotta-pancakes", name: "پنکیک ریکوتا", description: "پنکیک نرم با ریکوتا، توت‌های تازه و شیره افرا.", price: 10, image: "/images/dishes/ricotta-pancakes.jpg" },
@@ -35,10 +37,10 @@ export const menuCategories: MenuCategory[] = [
     name: "پاستا",
     subtitle: "کلاسیک / دریایی / ویژه",
     color: "#f2eee8",
-    image: "/images/categories/pasta.jpg",
+    image: "/images/images (2).jpeg",
     dishes: [
-      { id: "truffle-tagliatelle", name: "تاگلیاتله ترافل", description: "پاستای تازه با قارچ جنگلی و پنیر پارمزان.", price: 18, image: "/images/dishes/truffle-tagliatelle.jpg", tag: "HOUSE FAVORITE" },
-      { id: "spicy-rigatoni", name: "ریگاتونی تند", description: "گوجه‌فرنگی آرام‌پز، خامه، فلفل و پکورینو.", price: 16, image: "/images/dishes/spicy-rigatoni.jpg" },
+      { id: "truffle-tagliatelle", name: "تاگلیاتله ترافل", description: "پاستای تازه با قارچ جنگلی و پنیر پارمزان.", price: 18, image: "/images/images (9).jpeg", tag: "HOUSE FAVORITE" },
+      { id: "spicy-rigatoni", name: "ریگاتونی تند", description: "گوجه‌فرنگی آرام‌پز، خامه، فلفل و پکورینو.", price: 16, image: "/images/images (8).jpeg" },
       { id: "lemon-linguine", name: "لینگوئینی لیمویی", description: "کره لیمویی، جعفری، فلفل سیاه و پارمزان.", price: 15, image: "/images/dishes/lemon-linguine.jpg", tag: "VEGETARIAN" }
     ]
   },
@@ -47,7 +49,7 @@ export const menuCategories: MenuCategory[] = [
     name: "پیتزا",
     subtitle: "اصیل / خاص / ویژه",
     color: "#efa04d",
-    image: "/images/categories/pizza.jpg",
+    image: "/images/images (3).jpeg",
     dishes: [
       { id: "margherita", name: "مارگاریتا", description: "گوجه سن‌مارزانو، موزارلا، ریحان و روغن زیتون.", price: 14, image: "/images/dishes/margherita.jpg", tag: "CLASSIC" },
       { id: "hot-honey", name: "هات هانی", description: "پپرونی، موزارلا، فلفل ترشی و عسل تند.", price: 17, image: "/images/dishes/hot-honey.jpg" },
@@ -59,7 +61,7 @@ export const menuCategories: MenuCategory[] = [
     name: "ناهار",
     subtitle: "سالاد / ساندویچ / کاسه‌های سالم",
     color: "#f3e9e8",
-    image: "/images/categories/lunch.jpg",
+    image: "/images/images (4).jpeg",
     dishes: [
       { id: "crispy-chicken", name: "مرغ سوخاری", description: "مرغ باترمیلک، کلم خردشده و خیارشور خانگی.", price: 16, image: "/images/dishes/crispy-chicken.jpg" },
       { id: "market-bowl", name: "کاسه سبزیجات", description: "سبزیجات فصلی، غلات، سبزی معطر و سس ارده.", price: 13, image: "/images/dishes/market-bowl.jpg", tag: "VEGETARIAN" },
@@ -71,7 +73,7 @@ export const menuCategories: MenuCategory[] = [
     name: "قهوه",
     subtitle: "داغ / سرد / تخصصی",
     color: "#79c99e",
-    image: "/images/categories/coffee.jpg",
+    image: "/images/images (5).jpeg",
     dishes: [
       { id: "flat-white", name: "فلت وایت", description: "اسپرسوی دوبل با شیر بخارداده‌شده و مخملی.", price: 4, image: "/images/dishes/flat-white.jpg", tag: "BARISTA PICK" },
       { id: "iced-matcha", name: "ماچا آیس", description: "ماچای مرغوب، شیر جو دوسر و یخ.", price: 5, image: "/images/dishes/iced-matcha.jpg" },
@@ -83,7 +85,7 @@ export const menuCategories: MenuCategory[] = [
     name: "کوکتل",
     subtitle: "کلاسیک / امضای خانه / بدون الکل",
     color: "#252d34",
-    image: "/images/categories/cocktails.jpg",
+    image: "/images/images (6).jpeg",
     dishes: [
       { id: "bitter-orange", name: "پرتقال تلخ", description: "پرتقال خونی، مرکبات و آب گازدار.", price: 11, image: "/images/dishes/bitter-orange.jpg" },
       { id: "garden-martini", name: "مارتینی باغ", description: "خیار، سبزی‌های تازه و ترکیب معطر خانه.", price: 13, image: "/images/dishes/garden-martini.jpg", tag: "HOUSE FAVORITE" },

@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowLeft, Plus, Search, X } from "lucide-react";
-import type { MenuCategory } from "@/data/menu";
+import { cafeName, type MenuCategory } from "@/data/menu";
 
 type DishResult = MenuCategory["dishes"][number] & { categoryName: string };
 type Props = {
@@ -23,7 +23,7 @@ export function SearchOverlay({ dishes, onClose, onSelectDish, search, onSearchC
     <section className="fixed inset-0 z-20 animate-[fadeIn_.3s_ease-out] overflow-y-auto bg-[#f4eee6] text-[#273039]" role="dialog" aria-modal="true" aria-label="جست‌وجوی منو" dir="rtl">
       <div className="sticky top-0 z-10 grid h-16 grid-cols-3 items-center border-b border-black/10 bg-[#f4eee6]/95 px-[5%] backdrop-blur">
         <button className="flex items-center gap-1 justify-self-start text-xs font-bold" onClick={onClose}><ArrowLeft size={17} /> بازگشت</button>
-        <span className="justify-self-center font-serif font-bold">فیش</span>
+        <span className="justify-self-center font-serif font-bold">{cafeName}</span>
         <button className="justify-self-end p-2" aria-label="بستن جست‌وجو" onClick={onClose}><X size={22} /></button>
       </div>
       <div className="mx-auto max-w-3xl px-5 py-10">
