@@ -59,7 +59,7 @@ export function CategoryMenu() {
         </div>
       </header>
 
-      <main className="mx-auto h-[calc(100dvh-55px)] overflow-hidden">
+      <main className="mx-auto h-[calc(100dvh-55px)]">
         <section
           className="grid h-full auto-rows-fr"
           aria-label="دسته‌بندی‌های منو">
@@ -70,13 +70,13 @@ export function CategoryMenu() {
                 key={category.id}
                 onClick={() => setActiveCategory(category)}
                 aria-label={`نمایش منوی ${category.name}`}
-                className="relative isolate"
+                className="relative"
                 style={{
                   backgroundColor: category.color,
                   color: category.id === "cocktails" ? "#fbf6ed" : "#202a30",
                 }}>
                 <span
-                  className={`absolute inset-y-0 z-2 flex w-[58%] flex-col justify-center ${
+                  className={`absolute inset-y-0 z-20 flex w-[58%] flex-col justify-center ${
                     imageOnRight
                       ? "left-[7%] items-start text-right"
                       : "right-[7%] items-start text-right"
@@ -91,7 +91,7 @@ export function CategoryMenu() {
                 <ImagePlaceholder
                   src={category.image}
                   alt={`تصویر دسته ${category.name}`}
-                  className={`absolute top-1/2 z-1 aspect-square h-[130%] -translate-y-1/2 rounded-full border-2 border-white/80 bg-[#e9e3d9] p-1.25 shadow-lg outline outline-black/20 ${
+                  className={`absolute top-1/2 z-10 aspect-square h-[120%] -translate-y-1/2 rounded-full border-2 border-white/80 bg-[#e9e3d9] p-1.25 shadow-lg outline outline-black/20 ${
                     imageOnRight ? "right-[-2%]" : "left-[-2%]"
                   }`}
                   imageClassName="h-full w-full rounded-full object-cover"
