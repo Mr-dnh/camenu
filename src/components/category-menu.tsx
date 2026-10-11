@@ -42,17 +42,12 @@ export function CategoryMenu() {
     <>
       <header className="relative z-10 bg-[#202a30] text-[#f8f4ed]">
         <div className="grid grid-cols-2 justify-between px-5 py-2">
-          <button
-            className="text-right font-serif text-2xl font-bold tracking-[.24em]"
-            onClick={() => {
-              setActiveCategory(null);
-              setSearchOpen(false);
-            }}>
+          <button className="text-right font-serif text-2xl font-bold">
             {cafeName}
           </button>
           <button
             className="justify-self-end p-2"
-            aria-label="جست‌وجو در منو"
+            aria-label="جست‌وجو"
             onClick={() => setSearchOpen(true)}>
             <Search size={25} />
           </button>
@@ -76,15 +71,16 @@ export function CategoryMenu() {
                   color: category.id === "cocktails" ? "#fbf6ed" : "#202a30",
                 }}>
                 <span
-                  className={`absolute inset-y-0 z-20 flex w-[58%] flex-col justify-center ${
-                    imageOnRight
-                      ? "left-[7%] items-start text-right"
-                      : "right-[7%] items-start text-right"
-                  }`}>
+                  // className={`absolute inset-y-0 z-20 flex w-[58%] flex-col justify-center ${
+                  //   imageOnRight
+                  //     ? "left-[7%] items-start text-right"
+                  //     : "right-[7%] items-start text-right"
+                  // }`}
+                  className={`absolute inset-y-0 z-20 flex w-full flex-col justify-center`}>
                   <span className="max-w-full text-xl font-bold leading-tight tracking-wide sm:text-3xl">
                     {category.name}
                   </span>
-                  <span className="mt-2 max-w-full text-[8px] leading-5 opacity-80 sm:mt-3 sm:text-[10px]">
+                  <span className="mt-2 max-w-full text-[10px] leading-5 opacity-80 sm:mt-3 sm:text-[10px]">
                     {category.subtitle}
                   </span>
                 </span>

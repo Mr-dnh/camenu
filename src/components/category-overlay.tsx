@@ -19,13 +19,13 @@ export function CategoryOverlay({ category, onClose }: Props) {
       aria-modal="true"
       aria-label={`منوی ${category.name}`}
       dir="rtl">
-      <div className="sticky top-0 z-10 grid h-16 grid-cols-3 items-center border-b border-black/10 bg-[#f4eee6]/95 px-[5%] backdrop-blur">
+      <div className="sticky top-0 z-10 grid h-14 grid-cols-3 items-center border-b border-black/10 bg-[#f4eee6]/75 px-[5%] backdrop-blur">
         <button
-          className="flex items-center gap-1 justify-self-start text-xs font-bold"
+          className="flex items-center gap-1 text-xs font-bold"
           onClick={onClose}>
-          <ArrowLeft size={17} /> همهٔ دسته‌ها
+          <ArrowLeft size={17}/> همهٔ دسته‌ها
         </button>
-        <span className="justify-self-center font-serif font-bold tracking-widest">
+        <span className="justify-self-center font-serif font-bold">
           {cafeName}
         </span>
         <button
@@ -36,11 +36,8 @@ export function CategoryOverlay({ category, onClose }: Props) {
         </button>
       </div>
       <div className="mx-auto max-w-5xl px-5 py-8 sm:px-10">
-        <div className="pb-7">
-          <span className="text-[10px] font-bold tracking-widest text-[#66655e]">
-            منوی اختصاصی · {category.name}
-          </span>
-          <h2 className="mt-3 text-5xl font-bold sm:text-7xl">
+        <div className="pb-10">
+          <h2 className="mb-5 text-5xl font-bold sm:text-7xl">
             {category.name}
             <span className="text-[#eea052]">.</span>
           </h2>
@@ -50,7 +47,7 @@ export function CategoryOverlay({ category, onClose }: Props) {
           {category.dishes.map((dish, index) => (
             <article
               key={dish.id}
-              className="min-w-0 overflow-hidden rounded-xl border border-black/10 bg-white/70 shadow-sm"
+              className="overflow-hidden rounded-xl border border-black/10 bg-white/70 shadow-sm"
               style={{
                 animation: "fadeIn .4s ease-out both",
                 animationDelay: `${index * 60}ms`,
@@ -94,9 +91,8 @@ export function CategoryOverlay({ category, onClose }: Props) {
             </article>
           ))}
         </div>
-        <div className="mt-8 flex flex-wrap justify-between gap-3 border-t border-black/15 py-4 text-[9px] text-[#66655e]">
-          <span>تازه و روزانه، برای شما</span>
-          <span>دربارهٔ آلرژن‌ها از ما بپرسید</span>
+        <div className="mt-8 border-t border-black/15 py-4 text-[9px] text-[#66655e]">
+          <span>سلام</span>
         </div>
       </div>
     </section>

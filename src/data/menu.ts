@@ -18,7 +18,6 @@ export type MenuCategory = {
 
 export const cafeName: string = "کافه";
 
-// متن‌ها و قیمت‌ها نمونه‌اند؛ عکس‌ها را با فایل‌های خودت جایگزین کن.
 export const menuCategories: MenuCategory[] = [
   {
     id: "breakfast",
@@ -39,9 +38,9 @@ export const menuCategories: MenuCategory[] = [
     color: "#f2eee8",
     image: "/images/images (2).jpeg",
     dishes: [
-      { id: "truffle-tagliatelle", name: "تاگلیاتله ترافل", description: "پاستای تازه با قارچ جنگلی و پنیر پارمزان.", price: 18, image: "/images/images (9).jpeg", tag: "HOUSE FAVORITE" },
-      { id: "spicy-rigatoni", name: "ریگاتونی تند", description: "گوجه‌فرنگی آرام‌پز، خامه، فلفل و پکورینو.", price: 16, image: "/images/images (8).jpeg" },
-      { id: "lemon-linguine", name: "لینگوئینی لیمویی", description: "کره لیمویی، جعفری، فلفل سیاه و پارمزان.", price: 15, image: "/images/dishes/lemon-linguine.jpg", tag: "VEGETARIAN" }
+      { id: "truffle-tagliatelle", name: "تاگلیاتله ترافل", description: "پاستای تازه با قارچ جنگلی و پنیر پارمزان.", price: 160000, image: "/images/images (9).jpeg", tag: "HOUSE FAVORITE" },
+      { id: "spicy-rigatoni", name: "ریگاتونی تند", description: "گوجه‌فرنگی آرام‌پز، خامه، فلفل و پکورینو.", price: 98000, image: "/images/images (8).jpeg" },
+      { id: "lemon-linguine", name: "لینگوئینی لیمویی", description: "کره لیمویی، جعفری، فلفل سیاه و پارمزان.", price: 150000, image: "/images/dishes/lemon-linguine.jpg", tag: "VEGETARIAN" }
     ]
   },
   {

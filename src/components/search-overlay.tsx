@@ -52,7 +52,7 @@ export function SearchOverlay({
       </div>
       <div className="mx-auto max-w-3xl px-5 py-10">
         <span className="text-xs font-bold text-[#66655e]">
-          غذای مورد علاقه‌ات را پیدا کن
+          خوردنی مورد علاقه‌اتو پیدا کن
         </span>
         <label className="mt-5 flex items-center gap-3 border-b border-[#273039] py-3">
           <Search size={21} />
