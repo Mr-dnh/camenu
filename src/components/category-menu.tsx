@@ -115,11 +115,11 @@ export function CategoryMenu() {
                   </span>
                   <span
                     data-text={category.name}
-                    className="category-title relative max-w-full text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl md:text-5xl"
+                    className="category-title relative max-w-full text-2xl font-black leading-[1.1] tracking-tight sm:text-3xl md:text-4xl"
                   >
                     {category.name}
                   </span>
-                  <span className="category-subtitle mt-2 max-w-full text-xs font-medium leading-5 opacity-90 sm:mt-3 sm:text-sm">
+                  <span className="category-subtitle mt-2 max-w-full text-[11px] font-medium leading-5 opacity-90 sm:mt-3 sm:text-xs md:text-sm">
                     {category.subtitle}
                   </span>
                   <span className="mt-3 h-[3px] w-8 bg-current transition-[width] duration-300 group-hover:w-14 sm:mt-4" aria-hidden="true" />
