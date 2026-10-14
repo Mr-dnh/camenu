@@ -113,16 +113,11 @@ export function CategoryMenu() {
                   >
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="mb-2 flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] opacity-70 sm:text-xs">
-                    <span className="inline-block h-px w-5 bg-current sm:w-8" />
-                    MENU / {String(index + 1).padStart(2, "0")}
-                  </span>
                   <span
                     data-text={category.name}
                     className="category-title relative max-w-full text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl md:text-5xl"
                   >
                     {category.name}
-                    <span className="mr-2 inline-block align-middle text-sm font-normal opacity-60 transition-transform duration-300 group-hover:-translate-x-1 sm:text-base" aria-hidden="true">↙</span>
                   </span>
                   <span className="category-subtitle mt-2 max-w-full text-xs font-medium leading-5 opacity-90 sm:mt-3 sm:text-sm">
                     {category.subtitle}
