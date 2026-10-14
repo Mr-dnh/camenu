@@ -88,7 +88,7 @@ export function CategoryMenu() {
                   className={`category-image absolute top-1/2 z-10 aspect-square h-[120%] -translate-y-1/2 rounded-full border-2 border-white/80 bg-[#e9e3d9] p-1.25 shadow-lg outline outline-black/20 ${
                     imageOnRight ? "right-[-2%]" : "left-[-2%]"
                   }`}
-                  imageClassName="h-full w-full rounded-full object-cover"
+                  imageClassName="category-photo-motion h-full w-full rounded-full object-cover"
                 />
               </button>
             );
