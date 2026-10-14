@@ -37,11 +37,11 @@ export function CategoryOverlay({ category, onClose }: Props) {
       </div>
       <div className="mx-auto max-w-5xl px-5 py-8 sm:px-10">
         <div className="pb-10">
-          <h2 className="mb-5 animate-[copyReveal_.55s_.08s_cubic-bezier(.2,.8,.2,1)_both] text-5xl font-bold sm:text-7xl">
+          <h2 className="mb-5 animate-[copyReveal_.55s_.08s_cubic-bezier(.2,.8,.2,1)_both] text-4xl font-bold sm:text-5xl lg:text-6xl">
             {category.name}
             <span className="text-[#eea052]">.</span>
           </h2>
-          <p className="mt-2 animate-[fadeIn_.6s_.2s_ease-out_both] text-sm text-[#66655e]">{category.subtitle}</p>
+          <p className="mt-2 animate-[fadeIn_.6s_.2s_ease-out_both] text-xs text-[#66655e] sm:text-sm">{category.subtitle}</p>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
           {category.dishes.map((dish, index) => (
@@ -76,10 +76,10 @@ export function CategoryOverlay({ category, onClose }: Props) {
                       .replace(/[0-9]/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[Number(d)])}
                   </span>
                 </div>
-                <h3 className="mt-2 line-clamp-2 text-sm font-bold leading-6 sm:text-lg">
+                <h3 className="mt-2 line-clamp-2 text-xs font-bold leading-6 sm:text-sm lg:text-base">
                   {dish.name}
                 </h3>
-                <p className="mt-1 line-clamp-3 min-h-15 text-[10px] leading-5 text-[#66655e] sm:text-xs">
+                <p className="mt-1 line-clamp-3 min-h-15 text-[9px] leading-5 text-[#66655e] sm:text-[10px] lg:text-xs">
                   {dish.description}
                 </p>
                 <div className="mt-3 border-t border-black/10 pt-2 text-xs font-bold sm:text-sm">
