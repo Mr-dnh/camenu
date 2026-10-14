@@ -37,29 +37,29 @@ button {
 @keyframes categoryEnterRight {
   0% { opacity: .35; transform: translateX(9%); clip-path: inset(0 100% 0 0); }
   70% { opacity: 1; transform: translateX(-.8%); clip-path: inset(0 0 0 0); }
-  100% { opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
+  100% { opacity: 1; transform: translateX(0); clip-path: inset(0); }
 }
 
 @keyframes categoryEnterLeft {
   0% { opacity: .35; transform: translateX(-9%); clip-path: inset(0 0 0 100%); }
   70% { opacity: 1; transform: translateX(.8%); clip-path: inset(0 0 0 0); }
-  100% { opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
+  100% { opacity: 1; transform: translateX(0); clip-path: inset(0); }
 }
 
-/* Animate the image with transform, and finish at transform:none.
-   This leaves its final size and position exactly to the Tailwind layout. */
-@keyframes imagePopRight {
-  0% { opacity: 0; transform: translateX(42%) scale(.78) rotate(13deg); }
-  68% { opacity: 1; transform: translateX(-2.5%) scale(1.035) rotate(-2deg); }
-  84% { opacity: 1; transform: translateX(.8%) scale(.99) rotate(.6deg); }
-  100% { opacity: 1; transform: none; }
+/* Only animate the photo inside its fixed frame.
+   The outer circle never transforms, so its layout position cannot jump at the end. */
+@keyframes photoRevealRight {
+  0% { opacity: 0; transform: scale(.72) rotate(11deg); clip-path: inset(18% 0 18% 0 round 50%); }
+  62% { opacity: 1; transform: scale(1.045) rotate(-2deg); clip-path: inset(0 round 50%); }
+  82% { opacity: 1; transform: scale(.99) rotate(.5deg); clip-path: inset(0 round 50%); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); clip-path: inset(0 round 50%); }
 }
 
-@keyframes imagePopLeft {
-  0% { opacity: 0; transform: translateX(-42%) scale(.78) rotate(-13deg); }
-  68% { opacity: 1; transform: translateX(2.5%) scale(1.035) rotate(2deg); }
-  84% { opacity: 1; transform: translateX(-.8%) scale(.99) rotate(-.6deg); }
-  100% { opacity: 1; transform: none; }
+@keyframes photoRevealLeft {
+  0% { opacity: 0; transform: scale(.72) rotate(-11deg); clip-path: inset(18% 0 18% 0 round 50%); }
+  62% { opacity: 1; transform: scale(1.045) rotate(2deg); clip-path: inset(0 round 50%); }
+  82% { opacity: 1; transform: scale(.99) rotate(-.5deg); clip-path: inset(0 round 50%); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); clip-path: inset(0 round 50%); }
 }
 
 @keyframes copyReveal {
@@ -71,7 +71,7 @@ button {
 @keyframes overlayZoomIn {
   0% { opacity: 0; transform: scale(.92); clip-path: inset(6% 6% 6% 6% round 28px); }
   72% { opacity: 1; transform: scale(1.008); clip-path: inset(0 0 0 0 round 0); }
-  100% { opacity: 1; transform: none; clip-path: inset(0 0 0 0 round 0); }
+  100% { opacity: 1; transform: scale(1); clip-path: inset(0 0 0 0 round 0); }
 }
 
 @keyframes titleEcho {
@@ -88,19 +88,23 @@ button {
 }
 
 .category-image {
-  transform-origin: center;
+  /* Keep the positioned image frame completely static. */
+  transform: none !important;
+}
+
+.category-photo-motion {
   animation-duration: 1.05s;
   animation-timing-function: cubic-bezier(.2,.8,.2,1);
   animation-fill-mode: both;
   animation-delay: inherit;
 }
 
-.category-row:nth-child(odd) .category-image {
-  animation-name: imagePopRight;
+.category-row:nth-child(odd) .category-photo-motion {
+  animation-name: photoRevealRight;
 }
 
-.category-row:nth-child(even) .category-image {
-  animation-name: imagePopLeft;
+.category-row:nth-child(even) .category-photo-motion {
+  animation-name: photoRevealLeft;
 }
 
 .category-copy {
