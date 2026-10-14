@@ -14,7 +14,7 @@ type Props = {
 export function CategoryOverlay({ category, onClose }: Props) {
   return (
     <section
-      className="fixed inset-0 z-20 animate-[overlayZoomIn_.48s_cubic-bezier(.2,.8,.2,1)_both] overflow-y-auto bg-[#f4eee6] text-[#273039]"
+      className="fixed inset-0 z-20 overflow-y-auto bg-[#f4eee6] text-[#273039]"
       role="dialog"
       aria-modal="true"
       aria-label={`منوی ${category.name}`}
