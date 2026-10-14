@@ -51,8 +51,7 @@ export function CategoryMenu() {
           <button
             className="justify-self-end p-2"
             aria-label="جست‌وجو"
-            onClick={() => setSearchOpen(true)}
-          >
+            onClick={() => setSearchOpen(true)}>
             <Search size={25} />
           </button>
         </div>
@@ -61,8 +60,7 @@ export function CategoryMenu() {
       <main className="mx-auto min-h-0 w-full flex-1">
         <section
           className="grid h-full auto-rows-fr"
-          aria-label="دسته‌بندی‌های منو"
-        >
+          aria-label="دسته‌بندی‌های منو">
           {menuCategories.map((category, index) => {
             const imageOnRight = index % 2 === 0;
             return (
@@ -74,9 +72,11 @@ export function CategoryMenu() {
                 style={{
                   backgroundColor: category.color,
                   color: category.id === "cocktails" ? "#fbf6ed" : "#202a30",
-                }}
-              >
-                <span className={`absolute inset-y-0 z-20 flex w-full flex-col justify-center ${imageOnRight ? "px-5 pr-[28%] translate-x-3" : "px-5 pl-[28%]"}`}>
+                }}>
+                <span
+                  className={`absolute px-5 inset-y-0 z-20 flex w-full flex-col justify-center ${
+                    imageOnRight ? "pl-[28%] -translate-x-3" : "-pl-[28%]"
+                  }`}>
                   <span className="max-w-full text-2xl font-bold leading-tight tracking-wide sm:text-3xl">
                     {category.name}
                   </span>
