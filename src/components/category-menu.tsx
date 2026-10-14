@@ -1,13 +1,15 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import gsap from "gsap";
 import { cafeName, menuCategories, type MenuCategory } from "@/data/menu";
 import { ImagePlaceholder } from "@/components/image-placeholder";
 import { CategoryOverlay } from "@/components/category-overlay";
 import { SearchOverlay } from "@/components/search-overlay";
 
 export function CategoryMenu() {
+  const menuRef = useRef<HTMLElement>(null);
   const [activeCategory, setActiveCategory] = useState<MenuCategory | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -19,6 +21,40 @@ export function CategoryMenu() {
       ),
     []
   );
+
+  useLayoutEffect(() => {
+    const root = menuRef.current;
+    if (!root) return;
+
+    const rows = root.querySelectorAll<HTMLElement>(".category-row");
+    const context = gsap.context(() => {
+      gsap.set(rows, { clearProps: "all" });
+      rows.forEach((row, index) => {
+        const image = row.querySelector<HTMLElement>(".category-photo-motion");
+        const copy = row.querySelector<HTMLElement>(".category-copy");
+        const delay = index * 0.11;
+
+        gsap.fromTo(row,
+          { autoAlpha: 0, x: index % 2 === 0 ? 36 : -36 },
+          { autoAlpha: 1, x: 0, duration: 0.55, delay, ease: "power3.out", clearProps: "transform,opacity,visibility" }
+        );
+        if (image) {
+          gsap.fromTo(image,
+            { autoAlpha: 0, scale: 0.86, rotation: index % 2 === 0 ? 5 : -5 },
+            { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.75, delay: delay + 0.08, ease: "power3.out", clearProps: "transform,opacity,visibility" }
+          );
+        }
+        if (copy) {
+          gsap.fromTo(copy,
+            { autoAlpha: 0, y: 14 },
+            { autoAlpha: 1, y: 0, duration: 0.48, delay: delay + 0.12, ease: "power2.out", clearProps: "transform,opacity,visibility" }
+          );
+        }
+      });
+    }, root);
+
+    return () => context.revert();
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = activeCategory || searchOpen ? "hidden" : "";
@@ -38,7 +74,7 @@ export function CategoryMenu() {
 
   return (
     <div className="fixed inset-0 flex flex-col overflow-hidden">
-      <header className="relative z-10 shrink-0 bg-[#202a30] text-[#f8f4ed] animate-[headerReveal_.65s_cubic-bezier(.2,.8,.2,1)_both]">
+      <header className="relative z-10 shrink-0 bg-[#202a30] text-[#f8f4ed]">
         <div className="grid grid-cols-2 justify-between px-5 py-2">
           <button className="text-right font-serif text-2xl font-bold">
             {cafeName}
@@ -52,7 +88,7 @@ export function CategoryMenu() {
         </div>
       </header>
 
-      <main className="mx-auto min-h-0 w-full flex-1">
+      <main ref={menuRef} className="mx-auto min-h-0 w-full flex-1">
         <section className="grid h-full auto-rows-fr" aria-label="دسته‌بندی‌های منو">
           {menuCategories.map((category, index) => {
             const imageOnRight = index % 2 === 0;
@@ -66,13 +102,12 @@ export function CategoryMenu() {
                 style={{
                   backgroundColor: category.color,
                   color: category.id === "cocktails" ? "#fbf6ed" : "#202a30",
-                  animationDelay: `${delay}ms`,
                 }}>
                 <span
                   className={`category-copy absolute inset-y-0 z-20 flex w-full flex-col justify-center px-5 ${
                     imageOnRight ? "pl-5 pr-[50%] text-right" : "pl-[50%] pr-5 text-left"
                   }`}
-                  style={{ animationDelay: `${delay + 140}ms` }}>
+>
                   <span
                     data-text={category.name}
                     className="category-title relative max-w-full text-2xl font-bold leading-tight tracking-wide sm:text-3xl">
