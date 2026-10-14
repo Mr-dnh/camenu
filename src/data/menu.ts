@@ -35,7 +35,7 @@ export const menuCategories: MenuCategory[] = [
     id: "pasta",
     name: "پاستا",
     subtitle: "کلاسیک / دریایی / ویژه",
-    color: "#f200e8",
+    color: "#f2eee8",
     image: "/images/images (2).jpeg",
     dishes: [
       { id: "truffle-tagliatelle", name: "تاگلیاتله ترافل", description: "پاستای تازه با قارچ جنگلی و پنیر پارمزان.", price: 160000, image: "/images/images (9).jpeg", tag: "HOUSE FAVORITE" },
