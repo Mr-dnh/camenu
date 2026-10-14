@@ -108,13 +108,26 @@ export function CategoryMenu() {
                   }`}
 >
                   <span
-                    data-text={category.name}
-                    className="category-title relative max-w-full text-2xl font-bold leading-tight tracking-wide sm:text-3xl">
-                    {category.name}
+                    className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none font-serif text-[clamp(6rem,17vw,12rem)] font-black leading-none tracking-[-0.09em] opacity-[0.10] transition-transform duration-500 group-hover:scale-105 ${imageOnRight ? "left-[4%]" : "right-[4%]"}`}
+                    aria-hidden="true"
+                  >
+                    {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="category-subtitle mt-2 max-w-full text-xs leading-5 opacity-90 sm:mt-3 sm:text-sm">
+                  <span className="mb-2 flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] opacity-70 sm:text-xs">
+                    <span className="inline-block h-px w-5 bg-current sm:w-8" />
+                    MENU / {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    data-text={category.name}
+                    className="category-title relative max-w-full text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl md:text-5xl"
+                  >
+                    {category.name}
+                    <span className="mr-2 inline-block align-middle text-sm font-normal opacity-60 transition-transform duration-300 group-hover:-translate-x-1 sm:text-base" aria-hidden="true">↙</span>
+                  </span>
+                  <span className="category-subtitle mt-2 max-w-full text-xs font-medium leading-5 opacity-90 sm:mt-3 sm:text-sm">
                     {category.subtitle}
                   </span>
+                  <span className="mt-3 h-[3px] w-8 bg-current transition-[width] duration-300 group-hover:w-14 sm:mt-4" aria-hidden="true" />
                 </span>
                 <ImagePlaceholder
                   src={category.image}
