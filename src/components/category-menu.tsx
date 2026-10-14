@@ -97,7 +97,7 @@ export function CategoryMenu() {
                 key={category.id}
                 onClick={() => setActiveCategory(category)}
                 aria-label={`نمایش منوی ${category.name}`}
-                className="category-row relative min-h-0 overflow-hidden"
+                className="category-row group relative min-h-0 overflow-hidden border-b border-black/10 text-right transition-[filter] duration-300 hover:brightness-[1.035] focus-visible:z-30 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
                 style={{
                   backgroundColor: category.color,
                   color: category.id === "cocktails" ? "#fbf6ed" : "#202a30",
@@ -119,7 +119,7 @@ export function CategoryMenu() {
                 <ImagePlaceholder
                   src={category.image}
                   alt={`تصویر دسته ${category.name}`}
-                  className={`category-image absolute top-1/2 z-10 aspect-square h-[120%] -translate-y-1/2 rounded-full border-2 border-white/80 bg-[#e9e3d9] p-1.25 shadow-lg outline outline-black/20 ${
+                  className={`category-image absolute top-1/2 z-10 aspect-square h-[116%] -translate-y-1/2 rounded-full border-[3px] border-white/90 bg-[#e9e3d9] p-1.5 shadow-[0_8px_30px_rgba(0,0,0,0.18)] outline outline-1 outline-black/20 transition-transform duration-500 group-hover:scale-[1.035] ${
                     imageOnRight ? "right-[-2%]" : "left-[-2%]"
                   }`}
                   imageClassName="category-photo-motion h-full w-full rounded-full object-cover"
