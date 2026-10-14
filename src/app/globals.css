@@ -30,7 +30,7 @@ button {
 }
 
 @keyframes overlayZoomIn {
-  0% { opacity: 0; transform: scale(.92); clip-path: inset(6% 6% 6% 6% round 28px); }
+  0% { opacity: 1; transform: scale(.92); clip-path: inset(6% 6% 6% 6% round 28px); }
   72% { opacity: 1; transform: scale(1.008); clip-path: inset(0 0 0 0 round 0); }
   100% { opacity: 1; transform: scale(1); clip-path: inset(0 0 0 0 round 0); }
 }
