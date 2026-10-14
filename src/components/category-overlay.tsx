@@ -14,7 +14,7 @@ type Props = {
 export function CategoryOverlay({ category, onClose }: Props) {
   return (
     <section
-      className="fixed inset-0 z-20 animate-[fadeIn_.3s_ease-out] overflow-y-auto bg-[#f4eee6] text-[#273039]"
+      className="fixed inset-0 z-20 animate-[overlayZoomIn_.48s_cubic-bezier(.2,.8,.2,1)_both] overflow-y-auto bg-[#f4eee6] text-[#273039]"
       role="dialog"
       aria-modal="true"
       aria-label={`منوی ${category.name}`}
@@ -37,11 +37,11 @@ export function CategoryOverlay({ category, onClose }: Props) {
       </div>
       <div className="mx-auto max-w-5xl px-5 py-8 sm:px-10">
         <div className="pb-10">
-          <h2 className="mb-5 text-5xl font-bold sm:text-7xl">
+          <h2 className="mb-5 animate-[copyReveal_.55s_.08s_cubic-bezier(.2,.8,.2,1)_both] text-5xl font-bold sm:text-7xl">
             {category.name}
             <span className="text-[#eea052]">.</span>
           </h2>
-          <p className="mt-2 text-sm text-[#66655e]">{category.subtitle}</p>
+          <p className="mt-2 animate-[fadeIn_.6s_.2s_ease-out_both] text-sm text-[#66655e]">{category.subtitle}</p>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
           {category.dishes.map((dish, index) => (
@@ -50,26 +50,24 @@ export function CategoryOverlay({ category, onClose }: Props) {
               className="overflow-hidden rounded-xl border border-black/10 bg-white/70 shadow-sm"
               style={{
                 animation: "fadeIn .4s ease-out both",
-                animationDelay: `${index * 60}ms`,
+                animationDelay: `${index * 60 + 180}ms`,
               }}>
               <ImagePlaceholder
                 src={dish.image}
                 alt={`تصویر ${dish.name}`}
-                className="aspect-[1.05] w-full bg-[#e8dfd2] sm:aspect-[1.2] relative"
+                className="relative aspect-[1.05] w-full bg-[#e8dfd2] sm:aspect-[1.2]"
                 imageClassName="h-full w-full object-cover"
               />
               <div className="p-3 sm:p-4">
                 <div className="flex min-h-4 items-center justify-between gap-1 text-[8px] text-[#66655e] sm:text-[9px]">
                   <span className="truncate">
                     {dish.tag
-                      ? (
-                          {
-                            "HOUSE FAVORITE": "پیشنهاد سرآشپز",
-                            VEGETARIAN: "گیاهی",
-                            CLASSIC: "کلاسیک",
-                            "BARISTA PICK": "پیشنهاد باریستا",
-                          } as Record<string, string>
-                        )[dish.tag]
+                      ? ({
+                          "HOUSE FAVORITE": "پیشنهاد سرآشپز",
+                          VEGETARIAN: "گیاهی",
+                          CLASSIC: "کلاسیک",
+                          "BARISTA PICK": "پیشنهاد باریستا",
+                        } as Record<string, string>)[dish.tag]
                       : ""}
                   </span>
                   <span className="shrink-0">
