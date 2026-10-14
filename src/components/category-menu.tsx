@@ -27,6 +27,9 @@ export function CategoryMenu() {
 
   useEffect(() => {
     document.body.style.overflow = activeCategory || searchOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [activeCategory, searchOpen]);
 
   const selectDish = (dishId: string) => {
@@ -39,8 +42,8 @@ export function CategoryMenu() {
   };
 
   return (
-    <>
-      <header className="relative z-10 bg-[#202a30] text-[#f8f4ed]">
+    <div className="flex h-dvh flex-col overflow-hidden">
+      <header className="relative z-10 shrink-0 bg-[#202a30] text-[#f8f4ed]">
         <div className="grid grid-cols-2 justify-between px-5 py-2">
           <button className="text-right font-serif text-2xl font-bold">
             {cafeName}
@@ -48,16 +51,18 @@ export function CategoryMenu() {
           <button
             className="justify-self-end p-2"
             aria-label="جست‌وجو"
-            onClick={() => setSearchOpen(true)}>
+            onClick={() => setSearchOpen(true)}
+          >
             <Search size={25} />
           </button>
         </div>
       </header>
 
-      <main className="mx-auto h-[calc(100dvh-55px)]">
+      <main className="mx-auto min-h-0 w-full flex-1">
         <section
           className="grid h-full auto-rows-fr"
-          aria-label="دسته‌بندی‌های منو">
+          aria-label="دسته‌بندی‌های منو"
+        >
           {menuCategories.map((category, index) => {
             const imageOnRight = index % 2 === 0;
             return (
@@ -65,18 +70,13 @@ export function CategoryMenu() {
                 key={category.id}
                 onClick={() => setActiveCategory(category)}
                 aria-label={`نمایش منوی ${category.name}`}
-                className="relative"
+                className="relative min-h-0"
                 style={{
                   backgroundColor: category.color,
                   color: category.id === "cocktails" ? "#fbf6ed" : "#202a30",
-                }}>
-                <span
-                  // className={`absolute inset-y-0 z-20 flex w-[58%] flex-col justify-center ${
-                  //   imageOnRight
-                  //     ? "left-[7%] items-start text-right"
-                  //     : "right-[7%] items-start text-right"
-                  // }`}
-                  className={`absolute inset-y-0 z-20 flex w-full flex-col justify-center`}>
+                }}
+              >
+                <span className="absolute inset-y-0 z-20 flex w-full flex-col justify-center">
                   <span className="max-w-full text-xl font-bold leading-tight tracking-wide sm:text-3xl">
                     {category.name}
                   </span>
@@ -113,6 +113,6 @@ export function CategoryMenu() {
           onSearchChange={setSearch}
         />
       )}
-    </>
+    </div>
   );
 }
