@@ -42,7 +42,7 @@ export function CategoryMenu() {
   };
 
   return (
-    <div className="flex h-dvh flex-col overflow-hidden">
+    <div className="fixed inset-0 flex flex-col overflow-hidden">
       <header className="relative z-10 shrink-0 bg-[#202a30] text-[#f8f4ed]">
         <div className="grid grid-cols-2 justify-between px-5 py-2">
           <button className="text-right font-serif text-2xl font-bold">
