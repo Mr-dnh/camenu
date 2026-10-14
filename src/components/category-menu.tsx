@@ -28,7 +28,6 @@ export function CategoryMenu() {
 
     const rows = root.querySelectorAll<HTMLElement>(".category-row");
     const context = gsap.context(() => {
-      gsap.set(rows, { clearProps: "all" });
       rows.forEach((row, index) => {
         const image = row.querySelector<HTMLElement>(".category-photo-motion");
         const copy = row.querySelector<HTMLElement>(".category-copy");
