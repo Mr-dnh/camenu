@@ -75,7 +75,7 @@ export function CategoryMenu() {
                 }}>
                 <span
                   className={`absolute px-5 inset-y-0 z-20 flex w-full flex-col justify-center ${
-                    imageOnRight ? "pl-[28%] -translate-x-3" : "-pl-[28%]"
+                    imageOnRight ? "pr-[28%] text-left" : "pl-[28%] text-right"
                   }`}>
                   <span className="max-w-full text-2xl font-bold leading-tight tracking-wide sm:text-3xl">
                     {category.name}
