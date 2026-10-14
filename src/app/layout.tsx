@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { cafeName } from "@/data/menu";
+
+const vazirmatn = Vazirmatn({ subsets: ["arabic"], display: "swap", variable: "--font-vazirmatn" });
 
 export const metadata: Metadata = {
   title: cafeName,
@@ -18,7 +21,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body>
+      <body className={vazirmatn.className}>
         {children}
       </body>
     </html>
